@@ -2,6 +2,11 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 
+
+const corsOptions = {
+  origin: 'https://swiggy.up.railway.app', 
+};
+app.use(cors(corsOptions));
 const app = express();
 app.use(cors());
 
@@ -56,5 +61,5 @@ app.get('/city/delhi/:id', async (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log(`Proxy server running on http://localhost:${PORT}`);
+  console.log(`Proxy server running on :${PORT}`);
 });

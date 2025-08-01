@@ -4,7 +4,7 @@ const cors = require('cors');
 
 
 const corsOptions = {
-  origin: 'https://swiggy.up.railway.app', 
+  origin: 'https://swiggy1.up.railway.app', 
 };
 app.use(cors(corsOptions));
 const app = express();

@@ -32,7 +32,7 @@ export default function ResturantFoodMenu() {
       if (!current) return;
   
       current.addEventListener("scroll", handleScroll);
-      handleScroll(); // initial check
+      handleScroll(); 
   
       return () => current.removeEventListener("scroll", handleScroll);
     }, []);

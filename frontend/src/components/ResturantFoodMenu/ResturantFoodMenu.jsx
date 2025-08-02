@@ -49,7 +49,7 @@ export default function ResturantFoodMenu() {
     async function fetchData() {
       // const proxy = "https://cors-anywhere.herokuapp.com/";
       // const swiggyFoodMenuAPI = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7040592&lng=77.10249019999999&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`;
-      const response = await fetch("https://swiggy5.up.railway.app/resturants");
+      const response = await fetch("https://swiggybackend-zqcv.onrender.com");
       const data = await response.json();
       setRestData(data);
     }

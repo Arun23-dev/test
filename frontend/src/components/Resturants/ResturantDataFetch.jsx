@@ -39,7 +39,7 @@ export default function ResturantDataFetch() {
   useEffect(() => {
     async function fetchInitialData() {
       try {
-        const response = await fetch('http://localhost:5000/resturants');
+        const response = await fetch('https://swiggybackend-zqcv.onrender.com');
         const data = await response.json();      
         setData(data);
 

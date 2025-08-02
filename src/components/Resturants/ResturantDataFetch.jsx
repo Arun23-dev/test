@@ -57,7 +57,7 @@ export default function ResturantDataFetch() {
   async function loadMoreData() {
     if (!hasMore) return;
     try {
-     const url = `http://localhost:5000/resturants?offset=${offset}`;
+     const url = `https://swiggy6.up.railway.app/resturants?offset=${offset}`;
       const response = await fetch(url);
       const json = await response.json();
       const moreRestaurants = extractRestaurantsFromCards(json?.data?.cards);

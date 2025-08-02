@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import RestFoodData from './RestFoodData';
 import ResturantTopFood from './ResturantTopFood';
-import RestuarnatAllFood from "./ResturantAllFood";
+import ResturanttAllFood from "./ResturantAllFood";
 import BestPlacesToEat from "./BestPlacesToEat";
 import BestCuisines from "./BestCuisine";
 import ExploreResturant from "./ExploreResturant";
@@ -35,43 +35,45 @@ export default function ResturantDataFetch() {
     }
     return [];
   };
-
+// https://swiggy5.up.railway.app/resturants 
   useEffect(() => {
     async function fetchInitialData() {
       try {
-        const response = await fetch('https://swiggy5.up.railway.app/resturants');
+        const response = await fetch('http://localhost:5000/resturants');
         const data = await response.json();
+
+        console.log(data);
         setData(data);
 
         const initialRestaurants = extractRestaurantsFromCards(data?.data?.cards);
         setResturantAllFood(initialRestaurants);
         setOffset(initialRestaurants.length);
       } catch (error) {
-        console.error("Error fetching Swiggy data:", error);
+        res.error("Error fetching Swiggy data:",error);
       }
     }
     fetchInitialData();
   }, []);
 
-  async function loadMoreData() {
-    if (!hasMore) return;
-    try {
-      const url = `${proxyServer}${baseAPI}${queryParams}&offset=${offset}`;
-      const response = await fetch(url);
-      const json = await response.json();
-      const moreRestaurants = extractRestaurantsFromCards(json?.data?.cards);
+  // async function loadMoreData() {
+  //   if (!hasMore) return;
+  //   try {
+  //     const url = `${proxyServer}${baseAPI}${queryParams}&offset=${offset}`;
+  //     const response = await fetch(url);
+  //     const json = await response.json();
+  //     const moreRestaurants = extractRestaurantsFromCards(json?.data?.cards);
 
-      if (!moreRestaurants.length) {
-        setHasMore(false);
-        return;
-      }
+  //     if (!moreRestaurants.length) {
+  //       setHasMore(false);
+  //       return;
+  //     }
 
-      setResturantAllFood(prev => [...prev, ...moreRestaurants]);
-      setOffset(prev => prev + moreRestaurants.length);
-    } catch (error) {
-      console.error("Error loading more restaurants:", error);
-    }
-  }
+  //     setResturantAllFood(prev => [...prev, ...moreRestaurants]);
+  //     setOffset(prev => prev + moreRestaurants.length);
+  //   } catch (error) {
+  //     console.error("Error loading more restaurants:", error);
+  //   }
+  // }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -95,7 +97,7 @@ export default function ResturantDataFetch() {
     <div>
       <RestFoodData foodData={foodData} />
       <ResturantTopFood TopFoodData={TopFoodData} />
-      <RestuarnatAllFood CategoryWise={CategoryWise} ResturantAllFood={ResturantAllFood} />
+      <ResturanttAllFood CategoryWise={CategoryWise} ResturantAllFood={ResturantAllFood} />
       {hasMore && <div ref={loaderRef} className="h-10 bg-transparent"></div>}
       <BestPlacesToEat  BestPlacesData={BestPlacesData}/>
       <BestCuisines CuisineData={CuisineData} />

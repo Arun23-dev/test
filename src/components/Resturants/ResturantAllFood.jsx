@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router"; // Make sure this is imported
 
-export default function RestuarnatAllFood({ CategoryWise, ResturantAllFood }) {
+export default function ResturantAllFood({ CategoryWise, ResturantAllFood }) {
   return (
     <div className="w-[80%] justify-center mx-auto container">
       <div>

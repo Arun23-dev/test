@@ -28,7 +28,6 @@ app.get('/resturants', async (req, res) => {
     );
 
     const data = response.data;
-    console.log(data);
     res.send(data);
   } catch (err) {
     console.error('Error:', err.message);

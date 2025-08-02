@@ -63,6 +63,7 @@ app.get('/city/delhi/:id', async (req, res) => {
 });
 
 
-app.listen(PORT, () => {
-  console.log(`Proxy server running on :${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Proxy server running on :${PORT}`);
+// });
+module.exports=app;

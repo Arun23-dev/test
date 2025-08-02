@@ -35,45 +35,44 @@ export default function ResturantDataFetch() {
     }
     return [];
   };
+  // https://swiggy10.up.railway.app//resturants
 // https://swiggy5.up.railway.app/resturants 
   useEffect(() => {
     async function fetchInitialData() {
       try {
-        const response = await fetch('https://swiggy10.up.railway.app//resturants');
-        const data = await response.json();
-
-        console.log(data);
+        const response = await fetch('https://swiggy6.up.railway.app/resturants');
+        const data = await response.json();      
         setData(data);
 
         const initialRestaurants = extractRestaurantsFromCards(data?.data?.cards);
         setResturantAllFood(initialRestaurants);
         setOffset(initialRestaurants.length);
-      } catch (error) {
-        res.error("Error fetching Swiggy data:",error);
+      } catch (err) {
+        console.error("Error fetching Swiggy data:",err);
       }
     }
     fetchInitialData();
   }, []);
 
-  // async function loadMoreData() {
-  //   if (!hasMore) return;
-  //   try {
-  //     const url = `${proxyServer}${baseAPI}${queryParams}&offset=${offset}`;
-  //     const response = await fetch(url);
-  //     const json = await response.json();
-  //     const moreRestaurants = extractRestaurantsFromCards(json?.data?.cards);
+  async function loadMoreData() {
+    if (!hasMore) return;
+    try {
+     const url = `http://localhost:5000/resturants?offset=${offset}`;
+      const response = await fetch(url);
+      const json = await response.json();
+      const moreRestaurants = extractRestaurantsFromCards(json?.data?.cards);
 
-  //     if (!moreRestaurants.length) {
-  //       setHasMore(false);
-  //       return;
-  //     }
+      if (!moreRestaurants.length) {
+        setHasMore(false);
+        return;
+      }
 
-  //     setResturantAllFood(prev => [...prev, ...moreRestaurants]);
-  //     setOffset(prev => prev + moreRestaurants.length);
-  //   } catch (error) {
-  //     console.error("Error loading more restaurants:", error);
-  //   }
-  // }
+      setResturantAllFood(prev => [...prev, ...moreRestaurants]);
+      setOffset(prev => prev + moreRestaurants.length);
+    } catch (err) {
+      console.error("Error loading more restaurants:", err);
+    }
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(

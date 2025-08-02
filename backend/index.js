@@ -16,9 +16,13 @@ app.use(cors(corsOptions));
 const PORT = process.env.PORT || 5000;
 
 app.get('/resturants', async (req, res) => {
+
+  const offset = req.query.offset || 0;
   try {
+
+      const swiggyURL = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING&offset=${offset}`;
     const response = await axios.get(
-      'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING',
+    swiggyURL,
       {
         headers: {
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',

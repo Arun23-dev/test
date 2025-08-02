@@ -3,12 +3,15 @@ const axios = require('axios');
 const cors = require('cors');
 
 
+// 'https://swiggy1.up.railway.app', 
+const app = express();
 const corsOptions = {
-  origin: 'https://swiggy1.up.railway.app', 
+  origin: '*',
+  credentials:true,
 };
 app.use(cors(corsOptions));
-const app = express();
-app.use(cors());
+
+
 
 const PORT = process.env.PORT || 5000;
 

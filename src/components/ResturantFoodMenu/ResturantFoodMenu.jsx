@@ -43,11 +43,13 @@ export default function ResturantFoodMenu() {
   const RestInfo = RestData?.data?.cards[2]?.card?.card?.info;
   const Offers=RestData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers;
 
+  // https://swiggy2.up.railway.app/resturants
+
   useEffect(() => {
     async function fetchData() {
-      const proxy = "https://cors-anywhere.herokuapp.com/";
-      const swiggyFoodMenuAPI = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7040592&lng=77.10249019999999&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`;
-      const response = await fetch(proxy + swiggyFoodMenuAPI);
+      // const proxy = "https://cors-anywhere.herokuapp.com/";
+      // const swiggyFoodMenuAPI = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7040592&lng=77.10249019999999&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`;
+      const response = await fetch("https://swiggy5.up.railway.app/resturants");
       const data = await response.json();
       setRestData(data);
     }

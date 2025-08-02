@@ -14,9 +14,9 @@ export default function ResturantDataFetch() {
   const [hasMore, setHasMore] = useState(true);
   const loaderRef = useRef();
 
-  const proxyServer = "https://cors-anywhere.herokuapp.com/";
-  const baseAPI = "https://www.swiggy.com/dapi/restaurants/list/v5";
-  const queryParams = "?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+  // const proxyServer = "https://cors-anywhere.herokuapp.com/";
+  // const baseAPI = "https://www.swiggy.com/dapi/restaurants/list/v5";
+  // const queryParams = "?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 
   const foodData = Data?.data?.cards?.[0]?.card?.card?.imageGridCards?.info;
   const TopFoodData = Data?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
@@ -39,7 +39,7 @@ export default function ResturantDataFetch() {
   useEffect(() => {
     async function fetchInitialData() {
       try {
-        const response = await fetch(proxyServer + baseAPI + queryParams);
+        const response = await fetch('https://swiggy5.up.railway.app/resturants');
         const data = await response.json();
         setData(data);
 

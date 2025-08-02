@@ -3,10 +3,10 @@ const axios = require('axios');
 const cors = require('cors');
 
 
-// https://swiggyfrontend.onrender.com
+// 
 const app = express();
 const corsOptions = {
-  origin: '*',
+  origin: 'https://swiggyfrontend.onrender.com',
   credentials:true,
 };
 app.use(cors(corsOptions));

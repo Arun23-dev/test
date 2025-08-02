@@ -3,7 +3,6 @@ const axios = require('axios');
 const cors = require('cors');
 
 
-// 'https://swiggy1.up.railway.app', 
 const app = express();
 const corsOptions = {
   origin: '*',
@@ -13,7 +12,7 @@ app.use(cors(corsOptions));
 
 
 
-const PORT = process.env.PORT || 5000;
+const PORT =  5000;
 
 app.get('/resturants', async (req, res) => {
 
@@ -44,8 +43,6 @@ app.get('/resturants', async (req, res) => {
 
 app.get('/city/delhi/:id', async (req, res) => {
   const  {id}=req.params;
-  console.log(typeof id);
-  console.log(id);
   try {
     const response = await axios.get(
       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7040592&lng=77.10249019999999&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`,

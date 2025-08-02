@@ -5,7 +5,7 @@ const cors = require('cors');
 
 const app = express();
 const corsOptions = {
-  origin: '*',
+  origin: 'https://swiggyfrontend.onrender.com',
   credentials:true,
 };
 app.use(cors(corsOptions));
